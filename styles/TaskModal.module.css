@@ -1,0 +1,9 @@
+.taskModalContainer {
+  width: 100%;
+  height: 500px;
+}
+
+.taskModalForm {
+  display: flex;
+  flex-flow: column;
+}

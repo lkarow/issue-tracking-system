@@ -1,8 +1,6 @@
-import React, { useState } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
-import TaskList from "../components/TaskList";
 import NavbarView from "../components/NavbarView";
 import BoardView from "../components/BoardView";
 
@@ -18,8 +16,6 @@ export default function Home() {
       <NavbarView />
 
       <main className={styles.main}>
-        <TaskList />
-
         <BoardView />
       </main>
 

@@ -1,0 +1,61 @@
+.boardContainer {
+  width: 100%;
+  margin: 25px;
+}
+
+.board {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 20px;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.boardColumn {
+  flex: 1 1 0;
+  width: 100%;
+  min-width: 200px;
+  padding: 10px;
+}
+
+.boardColumnTitle {
+  border: 1px solid rgb(237, 237, 237);
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  padding: 10px;
+}
+
+.boardColumnContainer {
+  min-height: 100vh;
+  margin-top: 20px;
+}
+
+.boardColumnTextarea {
+  width: 100%;
+  padding: 5px;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.boardColumnCreateTaskBtn {
+  width: 100%;
+  padding: 5px;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.cardContainer {
+  display: flex;
+  flex-flow: column;
+  margin: 10px 0 10px 0;
+  border: 1px solid rgb(237, 237, 237);
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  padding: 10px;
+}
+
+.cardTitle {
+  font-weight: 700;
+}

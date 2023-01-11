@@ -1,0 +1,24 @@
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background-color: var(--primary-color);
+  color: rgb(255, 255, 255);
+}
+
+.navbar ul {
+  display: flex;
+  flex: row;
+  gap: 20px;
+}
+
+.navbar li {
+  list-style: none;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+}
