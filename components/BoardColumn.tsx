@@ -9,6 +9,10 @@ import TaskModal from "./TaskModal";
 type Prop = {
   tasks: Task[];
   columnTitle: string;
+  status: string;
+  handleDragOver: any;
+  allowDrop: any;
+  drag: any;
 };
 
 type Task = {
@@ -21,23 +25,19 @@ type Task = {
   Date: string;
 };
 
-export default function BoardColumn({ tasks, columnTitle }: Prop) {
+export default function BoardColumn({
+  tasks,
+  columnTitle,
+  handleDragOver,
+  allowDrop,
+  drag,
+  status,
+}: Prop) {
   const [isShowingModal, toggleModal] = useModal();
   const [titleOfNewTask, setTitleOfNewTask] = useState("");
 
   const handleCreateTask = () => {
     toggleModal();
-  };
-
-  const allowDrop = (e: any) => e.preventDefault();
-
-  const drag = (e: any) => e.dataTransfer.setData("text", e.target.id);
-
-  const drop = (e: any) => {
-    e.preventDefault();
-    const data = e.dataTransfer.getData("text");
-    const draggable = document.getElementById(data);
-    e.target.appendChild(draggable);
   };
 
   return (
@@ -53,8 +53,9 @@ export default function BoardColumn({ tasks, columnTitle }: Prop) {
         <div
           className={styles.boardColumnContainer}
           id={columnTitle}
-          onDragEnd={(e: any) => drop(e)}
+          onDragOver={(e) => handleDragOver(e)}
           onDrop={(e: any) => allowDrop(e)}
+          data-status={status}
         >
           {tasks &&
             tasks.map((task: Task) => (

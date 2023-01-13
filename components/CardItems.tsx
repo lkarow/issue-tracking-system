@@ -31,7 +31,7 @@ export default function CardItems({ task, drag }: Prop) {
     <div
       className={styles.cardContainer}
       draggable
-      onDragStart={(e) => drag(e)}
+      onDragStart={(e) => drag(e, task._id)}
     >
       <TaskModal task={task} showModal={isShowingModal} onClose={toggleModal} />
 
