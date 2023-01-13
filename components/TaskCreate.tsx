@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 import styles from "../styles/TaskModal.module.css";
 
@@ -50,6 +51,8 @@ export default function TaskCreate({ task, newTitle, onClose }: Prop) {
     };
   });
 
+  const router = useRouter();
+
   const handleChange = (e: any) => {
     const { name, value } = e.target;
 
@@ -87,6 +90,7 @@ export default function TaskCreate({ task, newTitle, onClose }: Prop) {
     });
 
     onClose();
+    router.reload();
   };
 
   return (
