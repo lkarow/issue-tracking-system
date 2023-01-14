@@ -5,6 +5,8 @@ import styles from "../styles/Board.module.css";
 import useModal from "../hooks/useModal";
 import TaskModal from "./TaskModal";
 
+import { FaRegSun, FaRegClock, FaRegUserCircle } from "react-icons/fa";
+
 type Prop = {
   task: Task;
   drag: any;
@@ -36,9 +38,15 @@ export default function CardItems({ task, drag }: Prop) {
       <TaskModal task={task} showModal={isShowingModal} onClose={toggleModal} />
 
       <div className={styles.cardTitle}>{task.Title}</div>
-      <div>{task.Date}</div>
-      <div>{task.Assignee}</div>
-      <button onClick={handleEdit}>Edit</button>
+      <div>
+        <FaRegClock className={styles.cardIcons} /> {task.Date}
+      </div>
+      <div>
+        <FaRegUserCircle className={styles.cardIcons} /> {task.Assignee}
+      </div>
+      <button className={styles.cardEditBtn} onClick={handleEdit}>
+        <FaRegSun className={styles.cardIcons} />
+      </button>
     </div>
   );
 }
