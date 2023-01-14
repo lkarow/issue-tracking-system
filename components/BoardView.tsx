@@ -29,12 +29,12 @@ export default function BoardView() {
   const drag = (e: any, taskId: string) => {
     e.dataTransfer.setData("taskId", taskId);
     e.target.id = taskId;
-    e.target.style.backgroundColor = "green";
+    e.target.style.backgroundColor = "rgb(25, 145, 189)";
   };
 
   const allowDrop = (e: any) => {
     // Check if dropzone is a column of the board
-    if (!e.target.id.match(/backlog|progress|review|done/)) return;
+    if (!e.target.id.match(/open|progress|review|done/)) return;
     e.preventDefault();
     const newStatus = e.target.id;
     drop(e, newStatus);
@@ -44,7 +44,9 @@ export default function BoardView() {
     e.preventDefault();
     const taskId = e.dataTransfer.getData("taskId");
     const dropzone = e.target;
-    dropzone.appendChild(document.getElementById(taskId));
+    const draggedItem = document.getElementById(taskId);
+    dropzone.appendChild(draggedItem);
+    draggedItem.style.backgroundColor = "#fff";
     changeStatusOfTask(taskId, newStatus);
   };
 
@@ -93,7 +95,7 @@ export default function BoardView() {
           drag={drag}
         />
         <BoardColumn
-          columnTitle="Review"
+          columnTitle="In Review"
           status="review"
           tasks={tasks.filter((task: Task) => task.Status === "review")}
           handleDragOver={handleDragOver}
