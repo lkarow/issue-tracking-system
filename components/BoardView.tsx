@@ -26,20 +26,25 @@ export default function BoardView() {
       });
   }, []);
 
-  const allowDrop = (e: any) => {
-    e.preventDefault();
-    const newStatus = e.target.getAttribute("data-status");
-    drop(e, newStatus);
-  };
-
   const drag = (e: any, taskId: string) => {
     e.dataTransfer.setData("taskId", taskId);
+    e.target.id = taskId;
     e.target.style.backgroundColor = "green";
+  };
+
+  const allowDrop = (e: any) => {
+    // Check if dropzone is a column of the board
+    if (!e.target.id.match(/backlog|progress|review|done/)) return;
+    e.preventDefault();
+    const newStatus = e.target.id;
+    drop(e, newStatus);
   };
 
   const drop = (e: any, newStatus: string) => {
     e.preventDefault();
     const taskId = e.dataTransfer.getData("taskId");
+    const dropzone = e.target;
+    dropzone.appendChild(document.getElementById(taskId));
     changeStatusOfTask(taskId, newStatus);
   };
 
@@ -63,7 +68,6 @@ export default function BoardView() {
 
   const handleDragOver = (e: any) => {
     e.preventDefault();
-    console.log(e);
   };
 
   if (loading) return <div>Is loading ...</div>;

@@ -35,6 +35,12 @@ export default function BoardColumn({
 }: Prop) {
   const [isShowingModal, toggleModal] = useModal();
   const [titleOfNewTask, setTitleOfNewTask] = useState("");
+  const [isShowingCreateTaskBtn, setIsShowingCreateTaskBtn] = useState(false);
+
+  const handleFocusTextarea = (e) => {
+    setIsShowingCreateTaskBtn(!isShowingCreateTaskBtn);
+    setTitleOfNewTask(e.target.value);
+  };
 
   const handleCreateTask = () => {
     toggleModal();
@@ -52,10 +58,9 @@ export default function BoardColumn({
         <div className={styles.boardColumnTitle}>{columnTitle}</div>
         <div
           className={styles.boardColumnContainer}
-          id={columnTitle}
+          id={status}
           onDragOver={(e) => handleDragOver(e)}
           onDrop={(e: any) => allowDrop(e)}
-          data-status={status}
         >
           {tasks &&
             tasks.map((task: Task) => (
@@ -65,17 +70,19 @@ export default function BoardColumn({
             <textarea
               className={styles.boardColumnTextarea}
               name="create-task"
-              rows={2}
-              placeholder="Create new task"
+              rows={1}
+              placeholder="+ Create new task"
               value={titleOfNewTask}
-              onChange={(e) => setTitleOfNewTask(e.target.value)}
+              onChange={(e) => handleFocusTextarea(e)}
             ></textarea>
-            <button
-              className={styles.boardColumnCreateTaskBtn}
-              onClick={handleCreateTask}
-            >
-              Create Task
-            </button>
+            {titleOfNewTask && (
+              <button
+                className={styles.boardColumnCreateTaskBtn}
+                onClick={handleCreateTask}
+              >
+                Create Task
+              </button>
+            )}
           </div>
         </div>
       </div>
