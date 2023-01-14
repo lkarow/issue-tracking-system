@@ -96,48 +96,105 @@ export default function TaskCreate({ task, newTitle, onClose }: Prop) {
   return (
     <div className={styles.taskModalContainer}>
       <form className={styles.taskModalForm} onSubmit={(e) => hanldeSubmit(e)}>
-        <label htmlFor="create-task-title">Title*</label>
-        <input
-          name="Title"
-          id="create-task-title"
-          type="text"
-          placeholder="Title"
-          value={newTask.Title}
-          onChange={(e) => handleChange(e)}
-          required
-        />
-        <label htmlFor="create-task-description">Description</label>
-        <textarea
-          name="Description"
-          id="create-task-description"
-          rows={2}
-          value={newTask.Description}
-          onChange={(e) => handleChange(e)}
-        ></textarea>
-        <label htmlFor="create-task-status">Status*</label>
-        <select
-          name="Status"
-          id="create-task-status"
-          value={newTask.Status}
-          onChange={(e) => handleChange(e)}
-          required
-        >
-          <option value="">Please choose an option</option>
-          <option value="open">Open</option>
-          <option value="progress">In progress</option>
-          <option value="review">Review</option>
-          <option value="done">Done</option>
-        </select>
-        <label htmlFor="create-task-date">Date</label>
-        <input
-          name="Date"
-          id="create-task-date"
-          type="date"
-          value={newTask.Date}
-          onChange={(e) => handleChange(e)}
-        />
-        <button onClick={(e) => handleDelete(e)}>Delete</button>
-        <input type="submit" value="Submit" />
+        <div className={styles.taskModalFormColumn}>
+          <label htmlFor="create-task-title">Title*</label>
+          <input
+            name="Title"
+            id="create-task-title"
+            className={styles.taskModalFormInput}
+            type="text"
+            placeholder="Title"
+            value={newTask.Title}
+            onChange={(e) => handleChange(e)}
+            required
+          />
+        </div>
+        <div className={styles.taskModalFormColumn}>
+          <label htmlFor="create-task-description">Description</label>
+          <textarea
+            name="Description"
+            id="create-task-description"
+            className={styles.taskModalFormInput}
+            rows={2}
+            value={newTask.Description}
+            onChange={(e) => handleChange(e)}
+          ></textarea>
+        </div>
+        <div className={styles.taskModalFormRow}>
+          <div className={styles.taskModalFormColumn}>
+            <label htmlFor="create-task-status">Status*</label>
+            <select
+              name="Status"
+              id="create-task-status"
+              className={styles.taskModalFormInput}
+              value={newTask.Status}
+              onChange={(e) => handleChange(e)}
+              required
+            >
+              <option value="">Please choose a status</option>
+              <option value="open">Open</option>
+              <option value="progress">In progress</option>
+              <option value="review">Review</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+          <div className={styles.taskModalFormColumn}>
+            <label htmlFor="create-task-date">Date</label>
+            <input
+              name="Date"
+              id="create-task-date"
+              className={styles.taskModalFormInput}
+              type="date"
+              value={newTask.Date}
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+        </div>
+        <div className={styles.taskModalFormRow}>
+          <div className={styles.taskModalFormColumn}>
+            <label htmlFor="create-task-title">Assignee</label>
+            <input
+              name="Title"
+              id="create-task-assignee"
+              className={styles.taskModalFormInput}
+              type="text"
+              placeholder="Assignee"
+              value={newTask.Assignee}
+              onChange={(e) => handleChange(e)}
+              required
+            />
+          </div>
+          <div className={styles.taskModalFormColumn}>
+            <label htmlFor="create-task-title">Author</label>
+            <input
+              name="Title"
+              id="create-task-author"
+              className={styles.taskModalFormInput}
+              type="text"
+              placeholder="Author"
+              value={newTask.Author}
+              onChange={(e) => handleChange(e)}
+              required
+            />
+          </div>
+        </div>
+        <div className={styles.taskModalFormRow}>
+          <div className={styles.taskModalFormColumn}>
+            <input
+              className={`${styles.taskModalBtn} ${styles.taskModalBtnSubmit}`}
+              type="submit"
+              value="Submit"
+            />
+          </div>
+          <div className={styles.taskModalFormColumn}>
+            <button
+              className={`${styles.taskModalBtn} ${styles.taskModalBtnDelete}`}
+              onClick={(e) => handleDelete(e)}
+            >
+              Delete
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );

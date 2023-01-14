@@ -23,11 +23,14 @@ textarea {
 
 .modal {
   position: relative;
-  background-color: #fff;
-  border: 1px solid rgb(179, 179, 179);
+  background-color: rgb(243, 244, 246);
   border-radius: 4px;
+  box-shadow: rgb(0 0 0 / 10%) 0px 10px 15px -3px,
+    rgb(0 0 0 / 5%) 0px 4px 6px -2px;
   overflow: auto;
   width: 80%;
+  max-width: 600px;
+  padding: 25px;
 }
 
 .modalWrapper {
@@ -38,32 +41,26 @@ textarea {
   top: 0px;
   left: 0px;
   background-color: rgba(107, 114, 128, 0.5);
+  backdrop-filter: blur(2px);
   z-index: 10;
   width: 100%;
   min-height: 100vh;
 }
 
 .modalCloseButton {
-  background: rgb(216, 43, 43);
-  border-radius: 0.375rem;
-  border-style: none;
-  color: #fff;
-  cursor: pointer;
-  line-height: 1.25rem;
-  padding: 10px;
-}
-
-.modalBody {
-  padding: 20px;
-}
-
-.modalFooter {
-  width: 100%;
-  height: 60px;
-  background-color: rgb(243, 244, 246);
   position: absolute;
-  bottom: 0;
-  display: flex;
-  padding: 10px 1.5rem;
-  flex-direction: row-reverse;
+  top: 10px;
+  right: 10px;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+.modalCloseButton:hover {
+  color: rgb(216, 43, 43);
+}
+
+.modalCloseButton:active {
+  transform: scale(0.8);
 }

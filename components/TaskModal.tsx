@@ -30,14 +30,10 @@ export default function TaskModal({
   return (
     <div className="modalWrapper" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <div className="modalBody">
-          <TaskCreate task={task} newTitle={newTitle} onClose={onClose} />
-        </div>
-        <div className="modalFooter">
-          <button className="modalCloseButton" onClick={onClose}>
-            Close Modal
-          </button>
-        </div>
+        <TaskCreate task={task} newTitle={newTitle} onClose={onClose} />
+        <button className="modalCloseButton" onClick={onClose}>
+          &#x2715;
+        </button>
       </div>
     </div>
   );
