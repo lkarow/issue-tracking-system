@@ -19,16 +19,16 @@ type Task = {
   Date: string;
 };
 
-export default function TaskCreate({ task, newTitle, onClose }: Prop) {
+export default function TaskForm({ task, newTitle, onClose }: Prop) {
   const [newTask, setNewTask] = useState<Task>(() => {
     if (task) {
       return {
-        Title: task.Title || newTitle || "",
-        Description: task.Title || "",
-        Status: task.Title || "",
-        Author: task.Title || "",
-        Assignee: task.Title || "",
-        Date: task.Title || "",
+        Title: task.Title || "",
+        Description: task.Description || "",
+        Status: task.Status || "",
+        Author: task.Author || "",
+        Assignee: task.Assignee || "",
+        Date: task.Date || "",
       };
     }
     if (newTitle) {
@@ -65,13 +65,25 @@ export default function TaskCreate({ task, newTitle, onClose }: Prop) {
   const submitTask = async (e: any) => {
     e.preventDefault();
 
-    await fetch("/api/tasks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newTask),
-    });
+    if (task) {
+      await fetch(`/api/tasks/${task._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newTask),
+      });
+    }
+
+    if (!task) {
+      await fetch("/api/tasks", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newTask),
+      });
+    }
   };
 
   const hanldeSubmit = async (e: any) => {
