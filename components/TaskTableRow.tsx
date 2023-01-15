@@ -17,7 +17,7 @@ type Task = {
   Date?: string;
 };
 
-export default function TaskTableColumn({ task }: Prop) {
+export default function TaskTableRow({ task }: Prop) {
   return (
     <tr>
       <td>{task.Title}</td>

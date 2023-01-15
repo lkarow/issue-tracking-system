@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/TaskTable.module.css";
-import TaskView from "./TaskTableColumn";
+import TaskTableRow from "./TaskTableRow";
 
 import { FaSort } from "react-icons/fa";
 
@@ -28,17 +28,6 @@ export default function TaskList() {
         setLoading(false);
       });
   }, []);
-
-  // const sort = (tasks: Task[], category: string) => {
-  //   tasks.sort((a: any, b: any) => {
-  //     console.log(category);
-  //     const sortA = a[category].toLowerCase();
-  //     const sortB = b[category].toLowerCase();
-  //     if (sortA < sortB) return -1;
-  //     if (sortA > sortB) return 1;
-  //     return 0;
-  //   });
-  // };
 
   if (loading) return <div>Is loading ...</div>;
   if (!tasks) return <div>No tasks data</div>;
@@ -105,7 +94,7 @@ export default function TaskList() {
               if (sortA > sortB) return 1;
               return 0;
             })
-            .map((task: Task) => <TaskView key={task._id} task={task} />)}
+            .map((task: Task) => <TaskTableRow key={task._id} task={task} />)}
       </tbody>
     </table>
   );
