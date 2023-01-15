@@ -146,7 +146,7 @@ export default function TaskForm({ task, newTitle, onClose }: Prop) {
               <option value="">Please choose a status</option>
               <option value="open">Open</option>
               <option value="progress">In progress</option>
-              <option value="review">Review</option>
+              <option value="review">In review</option>
               <option value="done">Done</option>
             </select>
           </div>
