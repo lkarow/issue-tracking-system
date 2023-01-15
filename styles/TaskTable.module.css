@@ -1,8 +1,11 @@
-.table {
-  position: relative;
-  width: 100%;
+.tableContainer {
   margin: 25px;
   padding: 10px;
+  width: 100%;
+}
+
+.table {
+  width: 100%;
   border-spacing: 0 10px;
   border: none;
 }
@@ -69,6 +72,17 @@
 
 .tableCreateNewTask {
   border: 1px dashed var(--primary-color);
+  border-radius: 4px;
+  color: rgb(111, 111, 111);
+}
+
+.tableFilterForm {
+  float: right;
+  color: rgb(111, 111, 111);
+}
+
+.tableFilterForm select {
+  border: 1px solid rgb(111, 111, 111);
   border-radius: 4px;
   color: rgb(111, 111, 111);
 }
