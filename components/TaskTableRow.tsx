@@ -20,7 +20,7 @@ type Task = {
 
 export default function TaskTableRow({ task, handleEdit }: Prop) {
   return (
-    <tr>
+    <tr className={styles.dataRow}>
       <td>{task.Title}</td>
       <td>{task.Author}</td>
       <td>{task.Date}</td>

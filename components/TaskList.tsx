@@ -5,7 +5,7 @@ import TaskTableRow from "./TaskTableRow";
 import useModal from "../hooks/useModal";
 import TaskModal from "./TaskModal";
 
-import { FaSort } from "react-icons/fa";
+import { FaSort, FaPlus } from "react-icons/fa";
 
 type Task = {
   _id: string;
@@ -24,6 +24,10 @@ export default function TaskList() {
 
   const [isShowingModal, toggleModal] = useModal();
   const [selectedTask, setSelectedTask] = useState({});
+
+  const handleCreateTask = () => {
+    toggleModal();
+  };
 
   const handleEdit = (task: Task) => {
     setSelectedTask(task);
@@ -103,6 +107,16 @@ export default function TaskList() {
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <td
+              colSpan={6}
+              className={styles.tableCreateNewTask}
+              onClick={handleCreateTask}
+            >
+              <FaPlus className={styles.tableIcons} />
+              Create Task
+            </td>
+          </tr>
           {tasks &&
             tasks
               .sort((a: any, b: any) => {
