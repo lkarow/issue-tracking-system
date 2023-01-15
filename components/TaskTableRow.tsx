@@ -5,6 +5,7 @@ import { FaRegSun } from "react-icons/fa";
 
 type Prop = {
   task: Task;
+  handleEdit: any;
 };
 
 type Task = {
@@ -17,7 +18,7 @@ type Task = {
   Date?: string;
 };
 
-export default function TaskTableRow({ task }: Prop) {
+export default function TaskTableRow({ task, handleEdit }: Prop) {
   return (
     <tr>
       <td>{task.Title}</td>
@@ -28,7 +29,10 @@ export default function TaskTableRow({ task }: Prop) {
       </td>
       <td>{task.Assignee}</td>
       <td>
-        <button className={styles.tableIconBtn}>
+        <button
+          className={styles.tableIconBtn}
+          onClick={() => handleEdit(task)}
+        >
           <FaRegSun className={styles.tableIcons} />
         </button>
       </td>
