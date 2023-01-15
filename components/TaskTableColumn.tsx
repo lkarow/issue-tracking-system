@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "../styles/TaskTable.module.css";
 
+import { FaRegSun } from "react-icons/fa";
+
 type Prop = {
   task: Task;
 };
@@ -25,6 +27,11 @@ export default function TaskTableColumn({ task }: Prop) {
         <span className={styles.status}>{task.Status}</span>
       </td>
       <td>{task.Assignee}</td>
+      <td>
+        <button className={styles.tableIconBtn}>
+          <FaRegSun className={styles.tableIcons} />
+        </button>
+      </td>
     </tr>
   );
 }
