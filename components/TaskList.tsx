@@ -23,6 +23,7 @@ export default function TaskList() {
   const [loading, setLoading] = useState(false);
   const [sortCategory, setSortCategory] = useState("Date");
   const [filterStatus, setFilterStatus] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const [isShowingModal, toggleModal] = useModal();
   const [selectedTask, setSelectedTask] = useState({});
@@ -59,18 +60,28 @@ export default function TaskList() {
 
       <div className={styles.tableContainer}>
         <form className={styles.tableFilterForm}>
-          <label htmlFor="filter-status">Status: </label>
-          <select
-            name="filter"
-            id="filter-status"
-            onChange={(e) => setFilterStatus(e.target.value)}
-          >
-            <option value="all">All</option>
-            <option value="open">Open</option>
-            <option value="progress">In progress</option>
-            <option value="review">In review</option>
-            <option value="done">Done</option>
-          </select>
+          <fieldset>
+            <label htmlFor="search-input">Search: </label>
+            <input
+              id="search-input"
+              type="text"
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </fieldset>
+          <fieldset>
+            <label htmlFor="filter-status">Status: </label>
+            <select
+              name="filter"
+              id="filter-status"
+              onChange={(e) => setFilterStatus(e.target.value)}
+            >
+              <option value="all">All</option>
+              <option value="open">Open</option>
+              <option value="progress">In progress</option>
+              <option value="review">In review</option>
+              <option value="done">Done</option>
+            </select>
+          </fieldset>
         </form>
         <table className={styles.table}>
           <thead>
@@ -138,8 +149,21 @@ export default function TaskList() {
               tasks
                 .filter((task) => {
                   if (filterStatus === "all") return true;
-                  console.log(task.Status === filterStatus);
                   return task.Status === filterStatus;
+                })
+                .filter((task) => {
+                  if (searchQuery === "") return true;
+                  return (
+                    task.Title.toLowerCase().includes(
+                      searchQuery.toLowerCase()
+                    ) ||
+                    task.Author.toLowerCase().includes(
+                      searchQuery.toLowerCase()
+                    ) ||
+                    task.Assignee.toLowerCase().includes(
+                      searchQuery.toLowerCase()
+                    )
+                  );
                 })
                 .sort((a: any, b: any) => {
                   const sortA = a[sortCategory].toLowerCase();
