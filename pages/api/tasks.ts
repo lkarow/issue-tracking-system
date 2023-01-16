@@ -41,7 +41,7 @@ export default async function handler(
     }
 
     default: {
-      res.status(400).json({ message: "Wrong ong method" });
+      res.status(400).json({ message: "Wrong method" });
       break;
     }
   }
