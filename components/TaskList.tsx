@@ -37,6 +37,16 @@ export default function TaskList() {
     toggleModal();
   };
 
+  const handleSortCategory = (e: any, category: string) => {
+    // Remove active class from other icons
+    document
+      .querySelector(`.${styles.tableActiveSortIcon}`)
+      ?.classList.remove(`${styles.tableActiveSortIcon}`);
+    // Add active class to clicked icon
+    e.target.classList.add(styles.tableActiveSortIcon);
+    setSortCategory(category);
+  };
+
   useEffect(() => {
     setLoading(true);
     fetch("/api/tasks")
@@ -90,7 +100,7 @@ export default function TaskList() {
                 Title
                 <button
                   className={styles.tableIconBtn}
-                  onClick={() => setSortCategory("Title")}
+                  onClick={(e) => handleSortCategory(e, "Title")}
                 >
                   <FaSort className={styles.tableIcons} />
                 </button>
@@ -99,7 +109,7 @@ export default function TaskList() {
                 Author
                 <button
                   className={styles.tableIconBtn}
-                  onClick={() => setSortCategory("Author")}
+                  onClick={(e) => handleSortCategory(e, "Author")}
                 >
                   <FaSort className={styles.tableIcons} />
                 </button>
@@ -108,7 +118,7 @@ export default function TaskList() {
                 Date
                 <button
                   className={styles.tableIconBtn}
-                  onClick={() => setSortCategory("Date")}
+                  onClick={(e) => handleSortCategory(e, "Date")}
                 >
                   <FaSort className={styles.tableIcons} />
                 </button>
@@ -117,7 +127,7 @@ export default function TaskList() {
                 Status
                 <button
                   className={styles.tableIconBtn}
-                  onClick={() => setSortCategory("Status")}
+                  onClick={(e) => handleSortCategory(e, "Status")}
                 >
                   <FaSort className={styles.tableIcons} />
                 </button>
@@ -126,7 +136,7 @@ export default function TaskList() {
                 Assignee
                 <button
                   className={styles.tableIconBtn}
-                  onClick={() => setSortCategory("Assignee")}
+                  onClick={(e) => handleSortCategory(e, "Assignee")}
                 >
                   <FaSort className={styles.tableIcons} />
                 </button>

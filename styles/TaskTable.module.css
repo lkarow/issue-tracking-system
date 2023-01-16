@@ -60,6 +60,10 @@
   vertical-align: sub;
 }
 
+.tableActiveSortIcon {
+  color: var(--primary-color);
+}
+
 .status {
   background: #55da6b;
   border-radius: 4px;
@@ -79,6 +83,12 @@
 .tableFilterForm {
   float: right;
   color: rgb(111, 111, 111);
+}
+
+.tableFilterForm fieldset {
+  display: inline-block;
+  border: none;
+  margin: 5px;
 }
 
 .tableFilterForm select {
