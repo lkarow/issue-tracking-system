@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import BoardColumn from "./BoardColumn";
+import LoadingSpinner from "./LoadingSpinner";
 import styles from "../styles/Board.module.css";
 
 type Task = {
@@ -72,7 +73,7 @@ export default function BoardView() {
     e.preventDefault();
   };
 
-  if (loading) return <div>Is loading ...</div>;
+  if (loading) return <LoadingSpinner />;
   if (!tasks) return <div>No tasks data</div>;
 
   return (

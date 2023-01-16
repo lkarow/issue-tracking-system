@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "../styles/TaskTable.module.css";
 import TaskTableRow from "./TaskTableRow";
+import LoadingSpinner from "./LoadingSpinner";
 
 import useModal from "../hooks/useModal";
 import TaskModal from "./TaskModal";
@@ -45,7 +46,7 @@ export default function TaskList() {
       });
   }, []);
 
-  if (loading) return <div>Is loading ...</div>;
+  if (loading) return <LoadingSpinner />;
   if (!tasks) return <div>No tasks data</div>;
 
   return (
