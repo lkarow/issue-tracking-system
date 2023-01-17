@@ -19,8 +19,6 @@ export default function Home() {
 
       <main className={styles.main}>
         <TaskList />
-
-        <BoardView />
       </main>
 
       <footer className={styles.footer}></footer>
