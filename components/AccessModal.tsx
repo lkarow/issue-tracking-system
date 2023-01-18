@@ -22,7 +22,7 @@ export default function AccessModal({ showModal, onClose }: Prop) {
         </div>
         {modal === "login" && (
           <>
-            <LoginForm />
+            <LoginForm onClose={onClose} />
             <div className={styles.switchInfo}>
               <span>You don&apos;t have an account yet?</span>{" "}
               <span
@@ -36,7 +36,7 @@ export default function AccessModal({ showModal, onClose }: Prop) {
         )}
         {modal === "registration" && (
           <>
-            <SignupForm />
+            <SignupForm onClose={onClose} />
             <div className={styles.switchInfo}>
               <span>You already have an account?</span>{" "}
               <span

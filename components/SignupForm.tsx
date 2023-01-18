@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import styles from "../styles/AccessModal.module.css";
 
+type Prop = {
+  onClose: any;
+};
+
 type SignupData = {
   Username: string;
   Email: string;
   Password: string;
 };
 
-export default function SignupForm() {
+export default function SignupForm({ onClose }: Prop) {
   const [signupData, setSignupData] = useState<SignupData>({
     Username: "",
     Email: "",
@@ -31,8 +35,7 @@ export default function SignupForm() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(signupData),
     });
-    console.log(signupData);
-    console.log("signup");
+    onClose();
   };
 
   return (
