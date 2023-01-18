@@ -164,9 +164,9 @@ export default function TaskForm({ task, newTitle, onClose }: Prop) {
         </div>
         <div className={styles.taskModalFormRow}>
           <div className={styles.taskModalFormColumn}>
-            <label htmlFor="create-task-title">Assignee</label>
+            <label htmlFor="create-task-title">Assignee*</label>
             <input
-              name="Title"
+              name="Assignee"
               id="create-task-assignee"
               className={styles.taskModalFormInput}
               type="text"
@@ -177,9 +177,9 @@ export default function TaskForm({ task, newTitle, onClose }: Prop) {
             />
           </div>
           <div className={styles.taskModalFormColumn}>
-            <label htmlFor="create-task-title">Author</label>
+            <label htmlFor="create-task-title">Author*</label>
             <input
-              name="Title"
+              name="Author"
               id="create-task-author"
               className={styles.taskModalFormInput}
               type="text"
