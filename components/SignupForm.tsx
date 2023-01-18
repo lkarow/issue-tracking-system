@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import styles from "../styles/AccessModal.module.css";
 
 type SignupData = {
-  username: string;
-  email: string;
-  password: string;
+  Username: string;
+  Email: string;
+  Password: string;
 };
 
 export default function SignupForm() {
   const [signupData, setSignupData] = useState<SignupData>({
-    username: "",
-    email: "",
-    password: "",
+    Username: "",
+    Email: "",
+    Password: "",
   });
 
   const handleChange = (e: any) => {
@@ -23,12 +23,24 @@ export default function SignupForm() {
     });
   };
 
+  const handleSignup = async (e: any) => {
+    e.preventDefault();
+
+    await fetch("/api/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(signupData),
+    });
+    console.log(signupData);
+    console.log("signup");
+  };
+
   return (
-    <form className={styles.modalForm}>
+    <form className={styles.modalForm} onSubmit={(e) => handleSignup(e)}>
       <fieldset>
         <label htmlFor="username-input">Username</label>
         <input
-          name="username"
+          name="Username"
           id="username-input"
           type="text"
           placeholder="Username"
@@ -38,7 +50,7 @@ export default function SignupForm() {
       <fieldset>
         <label htmlFor="username-input">Email</label>
         <input
-          name="email"
+          name="Email"
           id="email-input"
           type="text"
           placeholder="Email"
@@ -48,7 +60,7 @@ export default function SignupForm() {
       <fieldset>
         <label htmlFor="password-input">Password</label>
         <input
-          name="password"
+          name="Password"
           id="password-input"
           type="password"
           placeholder="Password"
