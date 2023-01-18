@@ -26,14 +26,8 @@ export default function TaskList() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const [isShowingModal, toggleModal] = useModal();
-  const [selectedTask, setSelectedTask] = useState({});
 
   const handleCreateTask = () => {
-    toggleModal();
-  };
-
-  const handleEdit = (task: Task) => {
-    setSelectedTask(task);
     toggleModal();
   };
 
@@ -62,11 +56,7 @@ export default function TaskList() {
 
   return (
     <>
-      <TaskModal
-        task={selectedTask}
-        showModal={isShowingModal}
-        onClose={toggleModal}
-      />
+      <TaskModal showModal={isShowingModal} onClose={toggleModal} />
 
       <div className={styles.tableContainer}>
         <form className={styles.tableFilterForm}>
@@ -151,8 +141,7 @@ export default function TaskList() {
                 className={styles.tableCreateNewTask}
                 onClick={handleCreateTask}
               >
-                <FaPlus className={styles.tableIcons} />
-                Create Task
+                <FaPlus className={styles.tableIcons} /> Create Task
               </td>
             </tr>
             {tasks &&
@@ -183,11 +172,7 @@ export default function TaskList() {
                   return 0;
                 })
                 .map((task: Task) => (
-                  <TaskTableRow
-                    key={task._id}
-                    task={task}
-                    handleEdit={handleEdit}
-                  />
+                  <TaskTableRow key={task._id} task={task} />
                 ))}
           </tbody>
         </table>
