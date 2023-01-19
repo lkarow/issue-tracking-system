@@ -71,7 +71,14 @@ export default function SignupForm({ onClose }: Prop) {
         />
       </fieldset>
       <div className={styles.row}>
-        <input className={styles.loginBtn} type="submit" value="Sign up" />
+        <input
+          className={styles.loginBtn}
+          type="submit"
+          value="Sign up"
+          disabled={
+            !signupData.Username || !signupData.Email || !signupData.Password
+          }
+        />
       </div>
     </form>
   );
