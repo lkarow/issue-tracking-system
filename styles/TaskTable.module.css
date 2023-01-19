@@ -30,7 +30,7 @@
   background-color: rgb(243, 244, 246);
 }
 
-.table tr:hover {
+.table tbody tr:hover {
   filter: brightness(0.96);
 }
 
