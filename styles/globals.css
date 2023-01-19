@@ -2,6 +2,10 @@
 
 :root {
   --primary-color: rgb(25, 145, 189);
+  --open-status-color: rgb(85, 218, 107);
+  --progress-status-color: rgb(193, 54, 240);
+  --review-status-color: rgb(255, 79, 26);
+  --done-status-color: rgb(0, 119, 255);
 }
 
 * {
