@@ -21,6 +21,10 @@
   font-weight: 700;
 }
 
+.loginBtn:disabled {
+  opacity: 70%;
+}
+
 .switchInfo {
   margin-top: 20px;
   text-align: center;
