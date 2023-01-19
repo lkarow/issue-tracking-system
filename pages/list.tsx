@@ -6,7 +6,7 @@ import NavbarView from "../components/NavbarView";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>Issue Tracking System</title>
         <meta name="description" content="Issue Tracking System" />
@@ -18,8 +18,6 @@ export default function Home() {
       <main className={styles.main}>
         <TaskList />
       </main>
-
-      <footer className={styles.footer}></footer>
-    </div>
+    </>
   );
 }

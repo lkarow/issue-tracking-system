@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
 import TaskList from "../components/TaskList";
 import NavbarView from "../components/NavbarView";
-import BoardView from "../components/BoardView";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>Issue Tracking System</title>
         <meta name="description" content="Issue Tracking System" />
@@ -20,8 +19,6 @@ export default function Home() {
       <main className={styles.main}>
         <TaskList />
       </main>
-
-      <footer className={styles.footer}></footer>
-    </div>
+    </>
   );
 }
