@@ -31,22 +31,29 @@ export default function CardItems({ task, drag }: Prop) {
 
   return (
     <div
-      className={styles.cardContainer}
+      className={styles.cardWrapper}
       draggable
       onDragStart={(e) => drag(e, task._id)}
     >
-      <TaskModal task={task} showModal={isShowingModal} onClose={toggleModal} />
+      <div className={styles[`${task.Status}ColorHeader`]}></div>
+      <div className={styles.cardContainer}>
+        <TaskModal
+          task={task}
+          showModal={isShowingModal}
+          onClose={toggleModal}
+        />
 
-      <div className={styles.cardTitle}>{task.Title}</div>
-      <div>
-        <FaRegClock className={styles.cardIcons} /> {task.Date}
+        <div className={styles.cardTitle}>{task.Title}</div>
+        <div>
+          <FaRegClock className={styles.cardIcons} /> {task.Date}
+        </div>
+        <div>
+          <FaRegUserCircle className={styles.cardIcons} /> {task.Assignee}
+        </div>
+        <button className={styles.cardEditBtn} onClick={handleEdit}>
+          <FaRegSun className={styles.cardIcons} />
+        </button>
       </div>
-      <div>
-        <FaRegUserCircle className={styles.cardIcons} /> {task.Assignee}
-      </div>
-      <button className={styles.cardEditBtn} onClick={handleEdit}>
-        <FaRegSun className={styles.cardIcons} />
-      </button>
     </div>
   );
 }

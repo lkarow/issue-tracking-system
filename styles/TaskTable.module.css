@@ -65,13 +65,29 @@
 }
 
 .status {
-  background: #55da6b;
+  background-color: rgb(85, 218, 107);
   border-radius: 4px;
   color: #fff;
   padding: 2px 8px;
   text-align: center;
   width: fit-content;
   word-break: break-word;
+}
+
+.openBg {
+  background-color: var(--open-status-color);
+}
+
+.progressBg {
+  background-color: var(--progress-status-color);
+}
+
+.reviewBg {
+  background-color: var(--review-status-color);
+}
+
+.doneBg {
+  background-color: var(--done-status-color);
 }
 
 .tableCreateNewTask {

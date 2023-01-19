@@ -36,7 +36,9 @@ export default function TaskTableRow({ task }: Prop) {
         <td>{task.Author}</td>
         <td>{task.Date}</td>
         <td>
-          <span className={styles.status}>{task.Status}</span>
+          <span className={`${styles.status} ${styles[`${task.Status}Bg`]}`}>
+            {task.Status}
+          </span>
         </td>
         <td>{task.Assignee}</td>
         <td>
