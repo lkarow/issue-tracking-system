@@ -52,44 +52,33 @@
   color: #fff;
 }
 
-.cardWrapper {
-  margin: 10px 0;
-}
-
-.openColorHeader {
-  width: 100%;
-  height: 4px;
-  background-color: var(--open-status-color);
-}
-
-.progressColorHeader {
-  width: 100%;
-  height: 4px;
-  background-color: var(--progress-status-color);
-}
-
-.reviewColorHeader {
-  width: 100%;
-  height: 4px;
-  background-color: var(--review-status-color);
-}
-
-.doneColorHeader {
-  width: 100%;
-  height: 4px;
-  background-color: var(--done-status-color);
-}
-
 .cardContainer {
   display: flex;
   flex-flow: column;
   gap: 5px;
+  margin: 10px 0;
   border-radius: 4px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
     rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
   background-color: #fff;
   padding: 10px;
   position: relative;
+}
+
+.openColorHeader {
+  border-top: 4px solid var(--open-status-color);
+}
+
+.progressColorHeader {
+  border-top: 4px solid var(--progress-status-color);
+}
+
+.reviewColorHeader {
+  border-top: 4px solid var(--review-status-color);
+}
+
+.doneColorHeader {
+  border-top: 4px solid var(--done-status-color);
 }
 
 .cardTitle {
