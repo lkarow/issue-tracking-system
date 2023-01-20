@@ -6,6 +6,7 @@ import styles from "../styles/TaskModal.module.css";
 type Prop = {
   task?: any;
   newTitle?: string;
+  newStatus?: string;
   onClose: any;
 };
 
@@ -19,7 +20,7 @@ type Task = {
   Date: string;
 };
 
-export default function TaskForm({ task, newTitle, onClose }: Prop) {
+export default function TaskForm({ task, newTitle, newStatus, onClose }: Prop) {
   const [newTask, setNewTask] = useState<Task>(() => {
     if (task) {
       return {
@@ -35,7 +36,7 @@ export default function TaskForm({ task, newTitle, onClose }: Prop) {
       return {
         Title: newTitle,
         Description: "",
-        Status: "",
+        Status: newStatus,
         Author: "",
         Assignee: "",
         Date: "",

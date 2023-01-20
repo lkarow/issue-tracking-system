@@ -5,6 +5,7 @@ import TaskForm from "./TaskForm";
 type Prop = {
   task?: Task;
   newTitle?: string;
+  newStatus?: string;
   showModal: any;
   onClose: any;
 };
@@ -22,6 +23,7 @@ type Task = {
 export default function TaskModal({
   task,
   newTitle,
+  newStatus,
   showModal,
   onClose,
 }: Prop) {
@@ -30,7 +32,12 @@ export default function TaskModal({
   return (
     <div className="modalWrapper" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <TaskForm task={task} newTitle={newTitle} onClose={onClose} />
+        <TaskForm
+          task={task}
+          newTitle={newTitle}
+          newStatus={newStatus}
+          onClose={onClose}
+        />
         <button className="modalCloseButton" onClick={onClose}>
           &#x2715;
         </button>

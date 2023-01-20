@@ -27,11 +27,13 @@ type Task = {
 export default function BoardColumn({ tasks, columnTitle, status }: Prop) {
   const [isShowingModal, toggleModal] = useModal();
   const [titleOfNewTask, setTitleOfNewTask] = useState("");
+  const [statusOfNewTask, setStatusOfNewTask] = useState("");
   const [isShowingCreateTaskBtn, setIsShowingCreateTaskBtn] = useState(false);
 
   const handleFocusTextarea = (e) => {
     setIsShowingCreateTaskBtn(!isShowingCreateTaskBtn);
     setTitleOfNewTask(e.target.value);
+    setStatusOfNewTask(status);
   };
 
   const handleCreateTask = () => {
@@ -44,6 +46,7 @@ export default function BoardColumn({ tasks, columnTitle, status }: Prop) {
         showModal={isShowingModal}
         onClose={toggleModal}
         newTitle={titleOfNewTask}
+        newStatus={statusOfNewTask}
       />
 
       <div className={styles.boardColumn}>
