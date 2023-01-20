@@ -22,6 +22,7 @@ export default function TaskList() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(false);
   const [sortCategory, setSortCategory] = useState("Date");
+  const [sortReverse, setSortReverse] = useState(false);
   const [filterStatus, setFilterStatus] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -39,6 +40,8 @@ export default function TaskList() {
     // Add active class to clicked icon
     e.target.classList.add(styles.tableActiveSortIcon);
     setSortCategory(category);
+    if (sortCategory === category) setSortReverse(!sortReverse);
+    if (sortCategory !== category) setSortReverse(false);
   };
 
   useEffect(() => {
@@ -175,6 +178,10 @@ export default function TaskList() {
                 .sort((a: any, b: any) => {
                   const sortA = a[sortCategory].toLowerCase();
                   const sortB = b[sortCategory].toLowerCase();
+                  if (sortReverse) {
+                    if (sortA > sortB) return -1;
+                    if (sortA < sortB) return 1;
+                  }
                   if (sortA < sortB) return -1;
                   if (sortA > sortB) return 1;
                   return 0;
