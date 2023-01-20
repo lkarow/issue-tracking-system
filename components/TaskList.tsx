@@ -150,6 +150,14 @@ export default function TaskList() {
                   if (filterStatus === "all") return true;
                   return task.Status === filterStatus;
                 })
+                // Sort tasks by date by default
+                .sort((a: any, b: any) => {
+                  const sortA = a.Date.toLowerCase();
+                  const sortB = b.Date.toLowerCase();
+                  if (sortA < sortB) return -1;
+                  if (sortA > sortB) return 1;
+                  return 0;
+                })
                 .filter((task) => {
                   if (searchQuery === "") return true;
                   return (
