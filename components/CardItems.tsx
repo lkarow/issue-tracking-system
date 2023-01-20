@@ -5,11 +5,12 @@ import styles from "../styles/Board.module.css";
 import useModal from "../hooks/useModal";
 import TaskModal from "./TaskModal";
 
+import { drag } from "../utils/dragAndDrop";
+
 import { FaRegSun, FaRegClock, FaRegUserCircle } from "react-icons/fa";
 
 type Prop = {
   task: Task;
-  drag: any;
 };
 
 type Task = {
@@ -22,7 +23,7 @@ type Task = {
   Date: string;
 };
 
-export default function CardItems({ task, drag }: Prop) {
+export default function CardItems({ task }: Prop) {
   const [isShowingModal, toggleModal] = useModal();
 
   const handleEdit = () => {

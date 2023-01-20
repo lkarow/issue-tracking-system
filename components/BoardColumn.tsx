@@ -6,13 +6,12 @@ import styles from "../styles/Board.module.css";
 import useModal from "../hooks/useModal";
 import TaskModal from "./TaskModal";
 
+import { handleDragOver, drop } from "../utils/dragAndDrop";
+
 type Prop = {
   tasks: Task[];
   columnTitle: string;
   status: string;
-  handleDragOver: any;
-  allowDrop: any;
-  drag: any;
 };
 
 type Task = {
@@ -25,14 +24,7 @@ type Task = {
   Date: string;
 };
 
-export default function BoardColumn({
-  tasks,
-  columnTitle,
-  handleDragOver,
-  allowDrop,
-  drag,
-  status,
-}: Prop) {
+export default function BoardColumn({ tasks, columnTitle, status }: Prop) {
   const [isShowingModal, toggleModal] = useModal();
   const [titleOfNewTask, setTitleOfNewTask] = useState("");
   const [isShowingCreateTaskBtn, setIsShowingCreateTaskBtn] = useState(false);
@@ -60,12 +52,12 @@ export default function BoardColumn({
           className={styles.boardColumnContainer}
           id={status}
           onDragOver={(e) => handleDragOver(e)}
-          onDrop={(e: any) => allowDrop(e)}
+          onDrop={(e: any) => drop(e, tasks)}
         >
           {tasks &&
-            tasks.map((task: Task) => (
-              <CardItems key={task._id} task={task} drag={drag} />
-            ))}
+            tasks
+              .filter((task: Task) => task.Status === status)
+              .map((task: Task) => <CardItems key={task._id} task={task} />)}
           <div>
             <textarea
               className={styles.boardColumnTextarea}
