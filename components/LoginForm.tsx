@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import styles from "../styles/AccessModal.module.css";
 
+import useSnackBar from "../hooks/useSnackBar";
+import SnackBar from "./SnackBar";
+
 import { useSession, signIn, signOut } from "next-auth/react";
 
 type Prop = {
@@ -20,6 +23,9 @@ export default function LoginForm({ onClose }: Prop) {
     Password: "",
   });
 
+  const [isShowingSnackBar, toggleSnackBar] = useSnackBar();
+  const [snackBarInfo, setSnackBarInfo] = useState("");
+
   const handleChange = (e: any) => {
     const { name, value } = e.target;
 
@@ -31,6 +37,8 @@ export default function LoginForm({ onClose }: Prop) {
 
   const handleLogin = async (e: any) => {
     e.preventDefault();
+    setSnackBarInfo("You are being logged in.");
+    toggleSnackBar();
     await signIn("credentials", {
       redirect: false,
       username: loginData.Username,
@@ -41,6 +49,8 @@ export default function LoginForm({ onClose }: Prop) {
 
   const handleLogout = async (e: any) => {
     e.preventDefault();
+    setSnackBarInfo("You are being logged out.");
+    toggleSnackBar();
     await signOut({ redirect: false });
     onClose();
   };
@@ -60,35 +70,42 @@ export default function LoginForm({ onClose }: Prop) {
   }
 
   return (
-    <form className={styles.modalForm} onSubmit={(e) => handleLogin(e)}>
-      <fieldset>
-        <label htmlFor="username-input">Username</label>
-        <input
-          name="Username"
-          id="username-input"
-          type="text"
-          placeholder="Username"
-          onChange={(e) => handleChange(e)}
-        />
-      </fieldset>
-      <fieldset>
-        <label htmlFor="password-input">Password</label>
-        <input
-          name="Password"
-          id="password-input"
-          type="password"
-          placeholder="Password"
-          onChange={(e) => handleChange(e)}
-        />
-      </fieldset>
-      <div className={styles.row}>
-        <input
-          className={`${styles.accessBtn} ${styles.loginBtn}`}
-          type="submit"
-          value="Log in"
-          disabled={!loginData.Username || !loginData.Password}
-        />
-      </div>
-    </form>
+    <>
+      <SnackBar
+        showSnackBar={isShowingSnackBar}
+        onCloseSnackBar={toggleSnackBar}
+        infoText={snackBarInfo}
+      />
+      <form className={styles.modalForm} onSubmit={(e) => handleLogin(e)}>
+        <fieldset>
+          <label htmlFor="username-input">Username</label>
+          <input
+            name="Username"
+            id="username-input"
+            type="text"
+            placeholder="Username"
+            onChange={(e) => handleChange(e)}
+          />
+        </fieldset>
+        <fieldset>
+          <label htmlFor="password-input">Password</label>
+          <input
+            name="Password"
+            id="password-input"
+            type="password"
+            placeholder="Password"
+            onChange={(e) => handleChange(e)}
+          />
+        </fieldset>
+        <div className={styles.row}>
+          <input
+            className={`${styles.accessBtn} ${styles.loginBtn}`}
+            type="submit"
+            value="Log in"
+            disabled={!loginData.Username || !loginData.Password}
+          />
+        </div>
+      </form>
+    </>
   );
 }
