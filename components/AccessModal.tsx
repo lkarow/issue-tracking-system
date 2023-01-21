@@ -3,6 +3,8 @@ import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import styles from "../styles/AccessModal.module.css";
 
+import { useSession } from "next-auth/react";
+
 type Prop = {
   showModal: any;
   onClose: any;
@@ -11,8 +13,9 @@ type Prop = {
 export default function AccessModal({ showModal, onClose }: Prop) {
   const [modal, setModal] = useState("login");
 
-  if (!showModal) return null;
+  const { status } = useSession();
 
+  if (!showModal) return null;
   return (
     <div className="modalWrapper" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
@@ -23,15 +26,17 @@ export default function AccessModal({ showModal, onClose }: Prop) {
         {modal === "login" && (
           <>
             <LoginForm onClose={onClose} />
-            <div className={styles.switchInfo}>
-              <span>You don&apos;t have an account yet?</span>{" "}
-              <span
-                className={styles.switchLink}
-                onClick={() => setModal("registration")}
-              >
-                Sign up
-              </span>
-            </div>
+            {status !== "authenticated" && (
+              <div className={styles.switchInfo}>
+                <span>You don&apos;t have an account yet?</span>{" "}
+                <span
+                  className={styles.switchLink}
+                  onClick={() => setModal("registration")}
+                >
+                  Sign up
+                </span>
+              </div>
+            )}
           </>
         )}
         {modal === "registration" && (
