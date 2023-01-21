@@ -22,7 +22,7 @@ export default function SignupForm({ onClose }: Prop) {
   });
 
   const [isShowingSnackBar, toggleSnackBar] = useSnackBar();
-  const [setSnackBarInfo, setSetSnackBarInfo] = useState("");
+  const [snackBarInfo, setSnackBarInfo] = useState("");
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -42,7 +42,7 @@ export default function SignupForm({ onClose }: Prop) {
       body: JSON.stringify(signupData),
     });
     if (response.status === 200) {
-      setSetSnackBarInfo("Created new account");
+      setSnackBarInfo("Created new account");
       toggleSnackBar();
       setTimeout(() => {
         onClose();
