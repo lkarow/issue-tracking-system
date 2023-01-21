@@ -90,7 +90,7 @@ export default function SignupForm({ onClose }: Prop) {
         </fieldset>
         <div className={styles.row}>
           <input
-            className={styles.loginBtn}
+            className={`${styles.accessBtn} ${styles.loginBtn}`}
             type="submit"
             value="Sign up"
             disabled={
