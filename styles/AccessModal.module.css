@@ -10,10 +10,9 @@
   flex-flow: column;
 }
 
-.loginBtn {
+.accessBtn {
   width: 100%;
   padding: 10px;
-  background-color: #55da6b;
   border-radius: 0.375rem;
   border-style: none;
   color: #fff;
@@ -21,8 +20,16 @@
   font-weight: 700;
 }
 
-.loginBtn:disabled {
+.accessBtn:disabled {
   opacity: 70%;
+}
+
+.loginBtn {
+  background-color: rgb(85, 218, 107);
+}
+
+.logoutBtn {
+  background-color: rgb(255, 79, 26);
 }
 
 .switchInfo {
