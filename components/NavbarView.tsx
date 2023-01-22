@@ -6,10 +6,14 @@ import styles from "../styles/NavbarView.module.css";
 import useModal from "../hooks/useModal";
 import AccessModal from "./AccessModal";
 
+import { useSession } from "next-auth/react";
+
 const NavbarView = () => {
   const [isShowingModal, toggleModal] = useModal();
 
   const handleActivateModal = () => toggleModal();
+
+  const { status } = useSession();
 
   return (
     <>
@@ -29,7 +33,7 @@ const NavbarView = () => {
         </ul>
         <div className={styles.alignRight}>
           <button className={styles.btn} onClick={handleActivateModal}>
-            Access
+            {status === "authenticated" ? "Online" : "Access"}
           </button>
         </div>
       </nav>
