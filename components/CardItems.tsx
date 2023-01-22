@@ -47,7 +47,11 @@ export default function CardItems({ task }: Prop) {
       <div>
         <FaRegUserCircle className={styles.cardIcons} /> {task.Assignee}
       </div>
-      <button className={styles.cardEditBtn} onClick={handleEdit}>
+      <button
+        className={styles.cardEditBtn}
+        onClick={handleEdit}
+        aria-label={"Edit"}
+      >
         <FaRegSun className={styles.cardIcons} />
       </button>
     </div>

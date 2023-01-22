@@ -38,7 +38,11 @@ export default function TaskModal({
           newStatus={newStatus}
           onClose={onClose}
         />
-        <button className="modalCloseButton" onClick={onClose}>
+        <button
+          className="modalCloseButton"
+          onClick={onClose}
+          aria-label={"Close"}
+        >
           &#x2715;
         </button>
       </div>

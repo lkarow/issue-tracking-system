@@ -60,7 +60,11 @@ export default function AccessModal({ showModal, onClose }: Prop) {
             </div>
           </>
         )}
-        <button className="modalCloseButton" onClick={onClose}>
+        <button
+          className="modalCloseButton"
+          onClick={onClose}
+          aria-label={"Close"}
+        >
           &#x2715;
         </button>
       </div>

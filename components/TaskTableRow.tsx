@@ -42,7 +42,11 @@ export default function TaskTableRow({ task }: Prop) {
         </td>
         <td>{task.Assignee}</td>
         <td>
-          <button className={styles.tableIconBtn} onClick={handleEdit}>
+          <button
+            className={styles.tableIconBtn}
+            onClick={handleEdit}
+            aria-label={"Edit"}
+          >
             <FaRegSun className={styles.tableIcons} />
           </button>
         </td>

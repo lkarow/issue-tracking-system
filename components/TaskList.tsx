@@ -94,6 +94,7 @@ export default function TaskList() {
                 <button
                   className={styles.tableIconBtn}
                   onClick={(e) => handleSortCategory(e, "Title")}
+                  aria-label={"Sort"}
                 >
                   <FaSort className={styles.tableIcons} />
                 </button>
@@ -103,6 +104,7 @@ export default function TaskList() {
                 <button
                   className={styles.tableIconBtn}
                   onClick={(e) => handleSortCategory(e, "Author")}
+                  aria-label={"Sort"}
                 >
                   <FaSort className={styles.tableIcons} />
                 </button>
@@ -112,6 +114,7 @@ export default function TaskList() {
                 <button
                   className={styles.tableIconBtn}
                   onClick={(e) => handleSortCategory(e, "Date")}
+                  aria-label={"Sort"}
                 >
                   <FaSort className={styles.tableIcons} />
                 </button>
@@ -121,6 +124,7 @@ export default function TaskList() {
                 <button
                   className={styles.tableIconBtn}
                   onClick={(e) => handleSortCategory(e, "Status")}
+                  aria-label={"Sort"}
                 >
                   <FaSort className={styles.tableIcons} />
                 </button>
@@ -130,6 +134,7 @@ export default function TaskList() {
                 <button
                   className={styles.tableIconBtn}
                   onClick={(e) => handleSortCategory(e, "Assignee")}
+                  aria-label={"Sort"}
                 >
                   <FaSort className={styles.tableIcons} />
                 </button>
