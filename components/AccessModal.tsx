@@ -20,8 +20,15 @@ export default function AccessModal({ showModal, onClose }: Prop) {
     <div className="modalWrapper" onClick={onClose}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <div>
-          <h1>{modal === "login" && "Welcome back!"}</h1>
-          <h1>{modal === "registration" && "Welcome!"}</h1>
+          <h1>{status === "authenticated" && "Logged in!"}</h1>
+          <h1>
+            {status !== "authenticated" && modal === "login" && "Welcome back!"}
+          </h1>
+          <h1>
+            {status !== "authenticated" &&
+              modal === "registration" &&
+              "Welcome!"}
+          </h1>
         </div>
         {modal === "login" && (
           <>
