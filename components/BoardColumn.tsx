@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CardItems from "./CardItems";
+import CardItems from "./CardItem";
 
 import styles from "../styles/Board.module.css";
 
