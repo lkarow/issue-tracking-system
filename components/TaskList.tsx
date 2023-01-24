@@ -46,12 +46,15 @@ export default function TaskList() {
 
   useEffect(() => {
     setLoading(true);
-    fetch("/api/tasks")
-      .then((res) => res.json())
-      .then((data) => {
-        setTasks(data);
-        setLoading(false);
-      });
+    const fetchData = async () => {
+      await fetch("/api/tasks")
+        .then((res) => res.json())
+        .then((data) => {
+          setTasks(data);
+          setLoading(false);
+        });
+    };
+    fetchData();
   }, []);
 
   if (loading) return <LoadingSpinner />;
