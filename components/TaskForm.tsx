@@ -106,6 +106,11 @@ export default function TaskForm({ task, newTitle, newStatus, onClose }: Prop) {
     router.reload();
   };
 
+  const handleDeleteOrCancel = (e: any) => {
+    if (task) handleDelete(e);
+    if (!task) onClose();
+  };
+
   return (
     <div className={styles.taskModalContainer}>
       <form className={styles.taskModalForm} onSubmit={(e) => hanldeSubmit(e)}>
@@ -208,7 +213,7 @@ export default function TaskForm({ task, newTitle, newStatus, onClose }: Prop) {
           <div className={styles.taskModalFormColumn}>
             <button
               className={`${styles.taskModalBtn} ${styles.taskModalBtnDelete}`}
-              onClick={(e) => handleDelete(e)}
+              onClick={(e) => handleDeleteOrCancel(e)}
             >
               {task ? "Delete" : "Cancel"}
             </button>
