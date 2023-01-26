@@ -197,6 +197,12 @@ export default function TaskForm({ task, newTitle, newStatus, onClose }: Prop) {
               className={`${styles.taskModalBtn} ${styles.taskModalBtnSubmit}`}
               type="submit"
               value="Submit"
+              disabled={
+                !newTask.Title ||
+                !newTask.Status ||
+                !newTask.Assignee ||
+                !newTask.Author
+              }
             />
           </div>
           <div className={styles.taskModalFormColumn}>
@@ -204,7 +210,7 @@ export default function TaskForm({ task, newTitle, newStatus, onClose }: Prop) {
               className={`${styles.taskModalBtn} ${styles.taskModalBtnDelete}`}
               onClick={(e) => handleDelete(e)}
             >
-              Delete
+              {task ? "Delete" : "Cancel"}
             </button>
           </div>
         </div>

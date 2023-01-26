@@ -28,24 +28,30 @@
 .taskModalBtn {
   padding: 5px;
   border-radius: 0.375rem;
-  border-style: none;
-  color: #fff;
   cursor: pointer;
   line-height: 1.25rem;
 }
 
-.taskModalBtn:hover {
+.taskModalBtn:hover:enabled {
   filter: brightness(0.9);
 }
 
-.taskModalBtn:active {
+.taskModalBtn:active:enabled {
   transform: scale(0.98);
 }
 
 .taskModalBtnSubmit {
+  border: 1px solid rgb(48, 174, 48);
   background-color: rgb(48, 174, 48);
+  color: #fff;
+}
+
+.taskModalBtnSubmit:disabled {
+  opacity: 70%;
 }
 
 .taskModalBtnDelete {
-  background: rgb(216, 43, 43);
+  background-color: #fff;
+  border: 1px solid rgb(216, 43, 43);
+  color: rgb(216, 43, 43);
 }
