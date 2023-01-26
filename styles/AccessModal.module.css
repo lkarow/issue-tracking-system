@@ -20,6 +20,14 @@
   font-weight: 700;
 }
 
+.accessBtn:hover:enabled {
+  filter: brightness(0.9);
+}
+
+.accessBtn:active:enabled {
+  transform: scale(0.98);
+}
+
 .accessBtn:disabled {
   opacity: 70%;
 }
