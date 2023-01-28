@@ -9,7 +9,7 @@ describe("TaskTableRow", () => {
         task={{
           _id: "0",
           Title: "Test Title",
-          Description: "Test Descirption",
+          Description: "Test Description",
           Status: "open",
           Author: "Test Author",
           Assignee: "Test Assignee",
