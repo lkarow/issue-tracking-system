@@ -4,7 +4,7 @@ import styles from "../styles/AccessModal.module.css";
 import useSnackBar from "../hooks/useSnackBar";
 import SnackBar from "./SnackBar";
 
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
 
 type Prop = {
   onClose: any;
@@ -16,8 +16,6 @@ type LoginData = {
 };
 
 export default function LoginForm({ onClose }: Prop) {
-  const { data: session } = useSession();
-
   const [loginData, setLoginData] = useState<LoginData>({
     Username: "",
     Password: "",
@@ -46,28 +44,6 @@ export default function LoginForm({ onClose }: Prop) {
     });
     onClose();
   };
-
-  const handleLogout = async (e: any) => {
-    e.preventDefault();
-    setSnackBarInfo("You are being logged out.");
-    toggleSnackBar();
-    await signOut({ redirect: false });
-    onClose();
-  };
-
-  if (session) {
-    return (
-      <div className={styles.modalForm}>
-        Signed in as {session.user.name} <br />
-        <button
-          className={`${styles.accessBtn} ${styles.logoutBtn}`}
-          onClick={(e) => handleLogout(e)}
-        >
-          Sign out
-        </button>
-      </div>
-    );
-  }
 
   return (
     <>
