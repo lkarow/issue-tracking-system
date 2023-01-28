@@ -45,14 +45,14 @@ export default function TaskList() {
   };
 
   useEffect(() => {
-    setLoading(true);
     const fetchData = async () => {
+      setLoading(true);
       await fetch("/api/tasks")
         .then((res) => res.json())
         .then((data) => {
           setTasks(data);
-          setLoading(false);
         });
+        setLoading(false);
     };
     fetchData();
   }, []);
