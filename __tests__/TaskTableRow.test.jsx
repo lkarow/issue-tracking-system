@@ -30,24 +30,4 @@ describe("TaskTableRow", () => {
     expect(taskStatus).toBeInTheDocument();
     expect(taskAssignee).toBeInTheDocument();
   });
-
-  it("renders edit button with aria label", () => {
-    render(
-      <TaskTableRow
-        task={{
-          _id: "0",
-          Title: "Test Title",
-          Description: "Test Descirption",
-          Status: "Open",
-          Author: "Test Author",
-          Assignee: "Test Assignee",
-          Date: "2023-01-01",
-        }}
-      />
-    );
-
-    const editButton = screen.getByRole("button", { name: "Edit" });
-
-    expect(editButton).toBeInTheDocument();
-  });
 });

@@ -142,7 +142,6 @@ export default function TaskList() {
                   <FaSort className={styles.tableIcons} />
                 </button>
               </th>
-              <th>&nbsp;</th>
             </tr>
           </thead>
           <tbody>
