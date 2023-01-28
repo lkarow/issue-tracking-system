@@ -8,6 +8,8 @@ import TaskModal from "./TaskModal";
 
 import { handleDragOver, drop } from "../utils/dragAndDrop";
 
+import { useSession } from "next-auth/react";
+
 type Prop = {
   tasks: Task[];
   columnTitle: string;
@@ -30,6 +32,8 @@ export default function BoardColumn({ tasks, columnTitle, status }: Prop) {
   const [statusOfNewTask, setStatusOfNewTask] = useState("");
   const [isShowingCreateTaskBtn, setIsShowingCreateTaskBtn] = useState(false);
 
+  const { data: session } = useSession();
+
   const handleFocusTextarea = (e) => {
     setIsShowingCreateTaskBtn(!isShowingCreateTaskBtn);
     setTitleOfNewTask(e.target.value);
@@ -37,6 +41,8 @@ export default function BoardColumn({ tasks, columnTitle, status }: Prop) {
   };
 
   const handleCreateTask = () => {
+    // Check if the user is logged in
+    if (!session) return;
     toggleModal();
   };
 
@@ -62,21 +68,25 @@ export default function BoardColumn({ tasks, columnTitle, status }: Prop) {
               .filter((task: Task) => task.Status === status)
               .map((task: Task) => <CardItems key={task._id} task={task} />)}
           <div>
-            <textarea
-              className={styles.boardColumnTextarea}
-              name="create-task"
-              rows={1}
-              placeholder="+ Create new task"
-              value={titleOfNewTask}
-              onChange={(e) => handleFocusTextarea(e)}
-            ></textarea>
-            {titleOfNewTask && (
-              <button
-                className={styles.boardColumnCreateTaskBtn}
-                onClick={handleCreateTask}
-              >
-                Create Task
-              </button>
+            {session && (
+              <>
+                <textarea
+                  className={styles.boardColumnTextarea}
+                  name="create-task"
+                  rows={1}
+                  placeholder="+ Create new task"
+                  value={titleOfNewTask}
+                  onChange={(e) => handleFocusTextarea(e)}
+                ></textarea>
+                {titleOfNewTask && (
+                  <button
+                    className={styles.boardColumnCreateTaskBtn}
+                    onClick={handleCreateTask}
+                  >
+                    Create Task
+                  </button>
+                )}
+              </>
             )}
           </div>
         </div>

@@ -1,11 +1,16 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import BoardView from "../components/BoardView";
 import "@testing-library/jest-dom";
+import { SessionProvider } from "next-auth/react";
 
 describe("BoardView", () => {
   it("renders four columns", async () => {
     fetch.mockResponse(JSON.stringify([]));
-    render(<BoardView />);
+    render(
+      <SessionProvider>
+        <BoardView />
+      </SessionProvider>
+    );
 
     const backlogColumn = await screen.findByText("Backlog");
     const progressColumn = await screen.findByText("In Progress");
@@ -20,7 +25,11 @@ describe("BoardView", () => {
 
   it("renders LoadingSpinner if loading", async () => {
     fetch.mockResponse(JSON.stringify([]));
-    render(<BoardView />);
+    render(
+      <SessionProvider>
+        <BoardView />
+      </SessionProvider>
+    );
 
     const loadingSpinner = await screen.findByTestId("loading-spinner");
 

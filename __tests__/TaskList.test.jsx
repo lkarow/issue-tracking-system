@@ -1,11 +1,16 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import TaskList from "../components/TaskList";
 import "@testing-library/jest-dom";
+import { SessionProvider } from "next-auth/react";
 
 describe("TaskList", () => {
   it("renders renders table", async () => {
     fetch.mockResponse(JSON.stringify([]));
-    render(<TaskList />);
+    render(
+      <SessionProvider>
+        <TaskList />
+      </SessionProvider>
+    );
 
     const loadingSpinner = await screen.findByText("Create Task");
 
@@ -14,7 +19,11 @@ describe("TaskList", () => {
 
   it("renders LoadingSpinner if loading", async () => {
     fetch.mockResponse(JSON.stringify([]));
-    render(<TaskList />);
+    render(
+      <SessionProvider>
+        <TaskList />
+      </SessionProvider>
+    );
 
     const loadingSpinner = await screen.findByTestId("loading-spinner");
 

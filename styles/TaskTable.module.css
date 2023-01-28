@@ -98,6 +98,11 @@
   border: 1px dashed var(--primary-color);
   border-radius: 4px;
   color: rgb(111, 111, 111);
+  cursor: pointer;
+}
+
+.tableCreateNewTaskDisabled {
+  cursor: not-allowed;
 }
 
 .tableFilterForm {

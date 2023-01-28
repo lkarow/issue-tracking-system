@@ -43,7 +43,7 @@ describe("CardItem", () => {
             Assignee: "",
             Date: "2023-01-01",
           }}
-        />{" "}
+        />
       </SessionProvider>
     );
 

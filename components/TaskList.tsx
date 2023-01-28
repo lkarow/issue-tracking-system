@@ -8,6 +8,8 @@ import TaskModal from "./TaskModal";
 
 import { FaSort, FaPlus } from "react-icons/fa";
 
+import { useSession } from "next-auth/react";
+
 type Task = {
   _id: string;
   Title: string;
@@ -28,7 +30,11 @@ export default function TaskList() {
 
   const [isShowingModal, toggleModal] = useModal();
 
+  const { data: session } = useSession();
+
   const handleCreateTask = () => {
+    // Check if the user is logged in
+    if (!session) return;
     toggleModal();
   };
 
@@ -52,7 +58,7 @@ export default function TaskList() {
         .then((data) => {
           setTasks(data);
         });
-        setLoading(false);
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -148,7 +154,11 @@ export default function TaskList() {
             <tr>
               <td
                 colSpan={6}
-                className={styles.tableCreateNewTask}
+                className={
+                  session
+                    ? styles.tableCreateNewTask
+                    : `${styles.tableCreateNewTask} ${styles.tableCreateNewTaskDisabled}`
+                }
                 onClick={handleCreateTask}
               >
                 <FaPlus className={styles.tableIcons} /> Create Task
