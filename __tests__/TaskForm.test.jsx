@@ -154,7 +154,7 @@ describe("TaskForm", () => {
     expect(button).toBeInTheDocument();
   });
 
-  it("renders delete button when a tasks is selected", () => {
+  it("renders delete button but no cancel when a tasks is selected", () => {
     render(
       <SessionProvider>
         <TaskForm
@@ -172,11 +172,13 @@ describe("TaskForm", () => {
     );
 
     const deleteButton = screen.getByRole("button", { name: "Delete" });
+    const cancelButton = screen.queryByRole("button", { name: "Cancel" });
 
     expect(deleteButton).toBeInTheDocument();
+    expect(cancelButton).not.toBeInTheDocument();
   });
 
-  it("renders cancel button when a new task is created", () => {
+  it("renders cancel button but no delete button when a new task is created", () => {
     render(
       <SessionProvider>
         <TaskForm task={null} />
@@ -184,7 +186,9 @@ describe("TaskForm", () => {
     );
 
     const cancelButton = screen.getByRole("button", { name: "Cancel" });
+    const deleteButton = screen.queryByRole("button", { name: "Delete" });
 
     expect(cancelButton).toBeInTheDocument();
+    expect(deleteButton).not.toBeInTheDocument();
   });
 });
