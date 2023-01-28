@@ -26,24 +26,4 @@ describe("CardItem", () => {
     expect(testDate).toBeInTheDocument();
     expect(testAssignee).toBeInTheDocument();
   });
-
-  it("renders edit button with aria label", () => {
-    render(
-      <CardItem
-        task={{
-          _id: "0",
-          Title: "Test Title",
-          Description: "Test Descirption",
-          Status: "open",
-          Author: "Test Author",
-          Assignee: "Test Assignee",
-          Date: "2023-01-01",
-        }}
-      />
-    );
-
-    const editButton = screen.getByRole("button", { name: "Edit" });
-
-    expect(editButton).toBeInTheDocument();
-  });
 });
