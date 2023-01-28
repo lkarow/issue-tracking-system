@@ -9,6 +9,8 @@ import { drag } from "../utils/dragAndDrop";
 
 import { FaRegClock, FaRegUserCircle } from "react-icons/fa";
 
+import { useSession } from "next-auth/react";
+
 type Prop = {
   task: Task;
 };
@@ -26,8 +28,18 @@ type Task = {
 export default function CardItems({ task }: Prop) {
   const [isShowingModal, toggleModal] = useModal();
 
+  const { data: session } = useSession();
+
   const handleEdit = () => {
+    // Check if the user is logged in
+    if (!session) return;
     toggleModal();
+  };
+
+  const handleDrag = (e: any, taskId: string) => {
+    // Check if the user is logged in
+    if (!session) return;
+    drag(e, taskId);
   };
 
   return (
@@ -35,8 +47,8 @@ export default function CardItems({ task }: Prop) {
       className={`${styles.cardContainer} ${
         styles[`${task.Status}ColorHeader`]
       }`}
-      draggable
-      onDragStart={(e) => drag(e, task._id)}
+      draggable={session !== null}
+      onDragStart={(e) => handleDrag(e, task._id)}
       onClick={handleEdit}
     >
       <TaskModal task={task} showModal={isShowingModal} onClose={toggleModal} />

@@ -4,6 +4,8 @@ import styles from "../styles/TaskTable.module.css";
 import useModal from "../hooks/useModal";
 import TaskModal from "./TaskModal";
 
+import { useSession } from "next-auth/react";
+
 type Prop = {
   task: Task;
 };
@@ -21,7 +23,11 @@ type Task = {
 export default function TaskTableRow({ task }: Prop) {
   const [isShowingModal, toggleModal] = useModal();
 
+  const { data: session } = useSession();
+
   const handleEdit = () => {
+    // Check if the user is logged in
+    if (!session) return;
     toggleModal();
   };
 

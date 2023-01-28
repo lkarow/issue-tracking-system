@@ -1,21 +1,24 @@
 import { render, screen } from "@testing-library/react";
 import CardItem from "../components/CardItem";
 import "@testing-library/jest-dom";
+import { SessionProvider } from "next-auth/react";
 
 describe("CardItem", () => {
   it("renders title, date and assignee", () => {
     render(
-      <CardItem
-        task={{
-          _id: "0",
-          Title: "Test Title",
-          Description: "Test Description",
-          Status: "open",
-          Author: "Test Author",
-          Assignee: "Test Assignee",
-          Date: "2023-01-01",
-        }}
-      />
+      <SessionProvider>
+        <CardItem
+          task={{
+            _id: "0",
+            Title: "Test Title",
+            Description: "Test Description",
+            Status: "open",
+            Author: "Test Author",
+            Assignee: "Test Assignee",
+            Date: "2023-01-01",
+          }}
+        />
+      </SessionProvider>
     );
 
     const testTitle = screen.getByText("Test Title");
@@ -29,17 +32,19 @@ describe("CardItem", () => {
 
   it("renders no user icon and name if none are included in the task data", () => {
     render(
-      <CardItem
-        task={{
-          _id: "0",
-          Title: "Test Title",
-          Description: "Test Description",
-          Status: "open",
-          Author: "Test Author",
-          Assignee: "",
-          Date: "2023-01-01",
-        }}
-      />
+      <SessionProvider>
+        <CardItem
+          task={{
+            _id: "0",
+            Title: "Test Title",
+            Description: "Test Description",
+            Status: "open",
+            Author: "Test Author",
+            Assignee: "",
+            Date: "2023-01-01",
+          }}
+        />{" "}
+      </SessionProvider>
     );
 
     const testAssignee = screen.queryByTestId("card-assignee");
