@@ -7,7 +7,7 @@ import TaskModal from "./TaskModal";
 
 import { drag } from "../utils/dragAndDrop";
 
-import { FaRegSun, FaRegClock, FaRegUserCircle } from "react-icons/fa";
+import { FaRegClock, FaRegUserCircle } from "react-icons/fa";
 
 type Prop = {
   task: Task;
@@ -37,6 +37,7 @@ export default function CardItems({ task }: Prop) {
       }`}
       draggable
       onDragStart={(e) => drag(e, task._id)}
+      onClick={handleEdit}
     >
       <TaskModal task={task} showModal={isShowingModal} onClose={toggleModal} />
 
@@ -47,13 +48,6 @@ export default function CardItems({ task }: Prop) {
       <div>
         <FaRegUserCircle className={styles.cardIcons} /> {task.Assignee}
       </div>
-      <button
-        className={styles.cardEditBtn}
-        onClick={handleEdit}
-        aria-label={"Edit"}
-      >
-        <FaRegSun className={styles.cardIcons} />
-      </button>
     </div>
   );
 }
