@@ -9,7 +9,7 @@ describe("CardItem", () => {
         task={{
           _id: "0",
           Title: "Test Title",
-          Description: "Test Descirption",
+          Description: "Test Description",
           Status: "open",
           Author: "Test Author",
           Assignee: "Test Assignee",
@@ -25,5 +25,25 @@ describe("CardItem", () => {
     expect(testTitle).toBeInTheDocument();
     expect(testDate).toBeInTheDocument();
     expect(testAssignee).toBeInTheDocument();
+  });
+
+  it("renders no user icon and name if none are included in the task data", () => {
+    render(
+      <CardItem
+        task={{
+          _id: "0",
+          Title: "Test Title",
+          Description: "Test Description",
+          Status: "open",
+          Author: "Test Author",
+          Assignee: "",
+          Date: "2023-01-01",
+        }}
+      />
+    );
+
+    const testAssignee = screen.queryByTestId("card-assignee");
+
+    expect(testAssignee).not.toBeInTheDocument();
   });
 });

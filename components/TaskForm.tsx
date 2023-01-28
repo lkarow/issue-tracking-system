@@ -170,7 +170,7 @@ export default function TaskForm({ task, newTitle, newStatus, onClose }: Prop) {
         </div>
         <div className={styles.taskModalFormRow}>
           <div className={styles.taskModalFormColumn}>
-            <label htmlFor="create-task-title">Assignee*</label>
+            <label htmlFor="create-task-assignee">Assignee</label>
             <input
               name="Assignee"
               id="create-task-assignee"
@@ -179,11 +179,10 @@ export default function TaskForm({ task, newTitle, newStatus, onClose }: Prop) {
               placeholder="Assignee"
               value={newTask.Assignee}
               onChange={(e) => handleChange(e)}
-              required
             />
           </div>
           <div className={styles.taskModalFormColumn}>
-            <label htmlFor="create-task-title">Author*</label>
+            <label htmlFor="create-task-author">Author*</label>
             <input
               name="Author"
               id="create-task-author"
@@ -202,12 +201,7 @@ export default function TaskForm({ task, newTitle, newStatus, onClose }: Prop) {
               className={`${styles.taskModalBtn} ${styles.taskModalBtnSubmit}`}
               type="submit"
               value="Submit"
-              disabled={
-                !newTask.Title ||
-                !newTask.Status ||
-                !newTask.Assignee ||
-                !newTask.Author
-              }
+              disabled={!newTask.Title || !newTask.Status || !newTask.Author}
             />
           </div>
           <div className={styles.taskModalFormColumn}>

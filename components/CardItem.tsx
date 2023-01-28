@@ -45,9 +45,11 @@ export default function CardItems({ task }: Prop) {
       <div>
         <FaRegClock className={styles.cardIcons} /> {task.Date}
       </div>
-      <div>
-        <FaRegUserCircle className={styles.cardIcons} /> {task.Assignee}
-      </div>
+      {task.Assignee && (
+        <div data-testid="card-assignee">
+          <FaRegUserCircle className={styles.cardIcons} /> {task.Assignee}
+        </div>
+      )}
     </div>
   );
 }
