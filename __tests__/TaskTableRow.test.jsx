@@ -21,7 +21,7 @@ describe("TaskTableRow", () => {
               }}
             />
           </tbody>
-        </table>{" "}
+        </table>
       </SessionProvider>
     );
 
