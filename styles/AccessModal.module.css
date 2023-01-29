@@ -2,12 +2,14 @@
   display: flex;
   flex-flow: column;
   gap: 20px;
+  margin: 20px 0;
 }
 
 .modalForm fieldset {
   border: none;
   display: flex;
   flex-flow: column;
+  gap: 6px;
 }
 
 .accessBtn {
