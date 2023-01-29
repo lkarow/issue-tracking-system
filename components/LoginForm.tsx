@@ -4,7 +4,7 @@ import styles from "../styles/AccessModal.module.css";
 import useSnackBar from "../hooks/useSnackBar";
 import SnackBar from "./SnackBar";
 
-import { useSession, signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 type Prop = {
   onClose: any;
