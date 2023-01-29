@@ -8,37 +8,37 @@ jest.mock("next/router", () => ({
 }));
 
 describe("TaskForm", () => {
-  it("renders inputs and labels for title, description, status, date, assignee and author", () => {
+  it("renders inputs and labels for title, description, status, date, assignee and author", async () => {
     render(
-      <SessionProvider>
+      <SessionProvider session={true}>
         <TaskForm />
       </SessionProvider>
     );
 
-    const inputTitle = screen.getByLabelText("Title*", {
+    const inputTitle = await screen.findByLabelText("Title*", {
       selector: "input",
     });
-    const labelTitle = screen.getByLabelText("Title*");
-    const inputDescription = screen.getByRole("textbox", {
+    const labelTitle = await screen.findByLabelText("Title*");
+    const inputDescription = await screen.findByRole("textbox", {
       name: "Description",
     });
-    const labelDescription = screen.getByLabelText("Description");
-    const inputStatus = screen.getByRole("combobox", {
+    const labelDescription = await screen.findByLabelText("Description");
+    const inputStatus = await screen.findByRole("combobox", {
       name: "Status*",
     });
-    const labelStatus = screen.getByLabelText("Status*");
-    const inputDate = screen.getByLabelText("Date", {
+    const labelStatus = await screen.findByLabelText("Status*");
+    const inputDate = await screen.findByLabelText("Date", {
       selector: "input",
     });
-    const labelDate = screen.getByLabelText("Date");
-    const inputAssignee = screen.getByLabelText("Assignee", {
+    const labelDate = await screen.findByLabelText("Date");
+    const inputAssignee = await screen.findByLabelText("Assignee", {
       selector: "input",
     });
-    const labelAssignee = screen.getByLabelText("Assignee");
-    const inputAuthor = screen.getByLabelText("Author*", {
+    const labelAssignee = await screen.findByLabelText("Assignee");
+    const inputAuthor = await screen.findByLabelText("Author*", {
       selector: "input",
     });
-    const labelAuthor = screen.getByLabelText("Author*");
+    const labelAuthor = await screen.findByLabelText("Author*");
 
     expect(inputTitle).toBeInTheDocument();
     expect(labelTitle).toBeInTheDocument();
@@ -56,7 +56,7 @@ describe("TaskForm", () => {
 
   it("renders the data of the tasks", () => {
     render(
-      <SessionProvider>
+      <SessionProvider session={true}>
         <TaskForm
           task={{
             _id: "0",
@@ -99,21 +99,21 @@ describe("TaskForm", () => {
   });
 
   it("renders nothing in inputs if data of the task is empty", () => {
-    render(
-      <SessionProvider>
-        <TaskForm
-          task={{
-            _id: "0",
-            Title: "",
-            Description: "",
-            Status: "",
-            Author: "",
-            Assignee: "",
-            Date: "",
-          }}
-        />
-      </SessionProvider>
-    );
+      render(
+        <SessionProvider session={true}>
+          <TaskForm
+            task={{
+              _id: "0",
+              Title: "",
+              Description: "",
+              Status: "",
+              Author: "",
+              Assignee: "",
+              Date: "",
+            }}
+          />
+        </SessionProvider>
+      );
 
     const taskTitle = screen.getByLabelText("Title*", {
       selector: "input",
@@ -144,7 +144,7 @@ describe("TaskForm", () => {
 
   it("renders submit button", () => {
     render(
-      <SessionProvider>
+      <SessionProvider session={true}>
         <TaskForm />
       </SessionProvider>
     );
@@ -154,9 +154,9 @@ describe("TaskForm", () => {
     expect(button).toBeInTheDocument();
   });
 
-  it("renders delete button but no cancel when a tasks is selected", () => {
+  it("renders delete button but no cancel when a tasks is selected", async () => {
     render(
-      <SessionProvider>
+      <SessionProvider session={true}>
         <TaskForm
           task={{
             _id: "0",
@@ -171,21 +171,21 @@ describe("TaskForm", () => {
       </SessionProvider>
     );
 
-    const deleteButton = screen.getByRole("button", { name: "Delete" });
+    const deleteButton = await screen.findByRole("button", { name: "Delete" });
     const cancelButton = screen.queryByRole("button", { name: "Cancel" });
 
     expect(deleteButton).toBeInTheDocument();
     expect(cancelButton).not.toBeInTheDocument();
   });
 
-  it("renders cancel button but no delete button when a new task is created", () => {
+  it("renders cancel button but no delete button when a new task is created", async () => {
     render(
-      <SessionProvider>
+      <SessionProvider session={true}>
         <TaskForm task={null} />
       </SessionProvider>
     );
 
-    const cancelButton = screen.getByRole("button", { name: "Cancel" });
+    const cancelButton = await screen.findByRole("button", { name: "Cancel" });
     const deleteButton = screen.queryByRole("button", { name: "Delete" });
 
     expect(cancelButton).toBeInTheDocument();

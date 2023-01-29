@@ -6,7 +6,7 @@ import { SessionProvider } from "next-auth/react";
 describe("NavbarView", () => {
   it("renders three nav links", () => {
     render(
-      <SessionProvider>
+      <SessionProvider session={false}>
         <NavbarView />
       </SessionProvider>
     );
@@ -22,7 +22,7 @@ describe("NavbarView", () => {
 
   it("renders a access button", () => {
     render(
-      <SessionProvider>
+      <SessionProvider session={false}>
         <NavbarView />
       </SessionProvider>
     );

@@ -6,7 +6,7 @@ import { SessionProvider } from "next-auth/react";
 describe("Boardcolumn", () => {
   it("renders the column title", () => {
     render(
-      <SessionProvider>
+      <SessionProvider session={true}>
         <Boardcolumn tasks={[]} columnTitle={"Open"} status={"open"} />
       </SessionProvider>
     );

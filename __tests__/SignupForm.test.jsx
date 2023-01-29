@@ -6,7 +6,7 @@ import { SessionProvider } from "next-auth/react";
 describe("SignupForm", () => {
   it("renders inputs and labels for username, email and password", () => {
     render(
-      <SessionProvider>
+      <SessionProvider session={false}>
         <SignupForm />
       </SessionProvider>
     );
@@ -34,7 +34,7 @@ describe("SignupForm", () => {
 
   it("renders sign up button", () => {
     render(
-      <SessionProvider>
+      <SessionProvider session={false}>
         <SignupForm />
       </SessionProvider>
     );

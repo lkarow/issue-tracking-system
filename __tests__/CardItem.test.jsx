@@ -6,7 +6,7 @@ import { SessionProvider } from "next-auth/react";
 describe("CardItem", () => {
   it("renders title, date and assignee", () => {
     render(
-      <SessionProvider>
+      <SessionProvider session={true}>
         <CardItem
           task={{
             _id: "0",
@@ -32,7 +32,7 @@ describe("CardItem", () => {
 
   it("renders no date icon and name if none is included in the task data", () => {
     render(
-      <SessionProvider>
+      <SessionProvider session={true}>
         <CardItem
           task={{
             _id: "0",
@@ -54,7 +54,7 @@ describe("CardItem", () => {
 
   it("renders no user icon and name if none is included in the task data", () => {
     render(
-      <SessionProvider>
+      <SessionProvider session={true}>
         <CardItem
           task={{
             _id: "0",

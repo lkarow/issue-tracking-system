@@ -6,7 +6,7 @@ import { SessionProvider } from "next-auth/react";
 describe("TaskTableRow", () => {
   it("renders title, author, date, status and assignee of a task", () => {
     render(
-      <SessionProvider>
+      <SessionProvider session={false}>
         <table>
           <tbody>
             <TaskTableRow

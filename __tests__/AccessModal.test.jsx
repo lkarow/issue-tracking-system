@@ -6,7 +6,7 @@ import { SessionProvider } from "next-auth/react";
 describe("AccessModal", () => {
   it("renders close button", () => {
     render(
-      <SessionProvider>
+      <SessionProvider session={false}>
         <AccessModal showModal={() => {}} />
       </SessionProvider>
     );
@@ -18,7 +18,7 @@ describe("AccessModal", () => {
 
   it("renders default heading for unauthenticated users", () => {
     render(
-      <SessionProvider>
+      <SessionProvider session={false}>
         <AccessModal showModal={() => {}} />
       </SessionProvider>
     );
@@ -30,7 +30,7 @@ describe("AccessModal", () => {
 
   it("renders default info for unauthenticated users", () => {
     render(
-      <SessionProvider>
+      <SessionProvider session={false}>
         <AccessModal showModal={() => {}} />
       </SessionProvider>
     );
