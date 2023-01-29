@@ -54,9 +54,11 @@ export default function CardItems({ task }: Prop) {
       <TaskModal task={task} showModal={isShowingModal} onClose={toggleModal} />
 
       <div className={styles.cardTitle}>{task.Title}</div>
-      <div>
-        <FaRegClock className={styles.cardIcons} /> {task.Date}
-      </div>
+      {task.Date && (
+        <div data-testid="card-date">
+          <FaRegClock className={styles.cardIcons} /> {task.Date}
+        </div>
+      )}
       {task.Assignee && (
         <div data-testid="card-assignee">
           <FaRegUserCircle className={styles.cardIcons} /> {task.Assignee}

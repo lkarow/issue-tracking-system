@@ -30,7 +30,29 @@ describe("CardItem", () => {
     expect(testAssignee).toBeInTheDocument();
   });
 
-  it("renders no user icon and name if none are included in the task data", () => {
+  it("renders no date icon and name if none is included in the task data", () => {
+    render(
+      <SessionProvider>
+        <CardItem
+          task={{
+            _id: "0",
+            Title: "Test Title",
+            Description: "Test Description",
+            Status: "open",
+            Author: "Test Author",
+            Assignee: "Test Assignee",
+            Date: "",
+          }}
+        />
+      </SessionProvider>
+    );
+
+    const testDate = screen.queryByTestId("card-date");
+
+    expect(testDate).not.toBeInTheDocument();
+  });
+
+  it("renders no user icon and name if none is included in the task data", () => {
     render(
       <SessionProvider>
         <CardItem
