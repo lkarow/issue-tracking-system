@@ -39,4 +39,16 @@ describe("AccessModal", () => {
 
     expect(info).toBeInTheDocument();
   });
+
+  it("renders special info if users is logged in", () => {
+    render(
+      <SessionProvider session={{ user: { name: "Test User" } }}>
+        <AccessModal showModal={() => {}} />
+      </SessionProvider>
+    );
+
+    const info = screen.getByText("Logged in!");
+
+    expect(info).toBeInTheDocument();
+  });
 });
