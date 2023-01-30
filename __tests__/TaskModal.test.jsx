@@ -10,7 +10,7 @@ jest.mock("next/router", () => ({
 describe("TaskModal", () => {
   it("renders close button", () => {
     render(
-      <SessionProvider session={true}>
+      <SessionProvider session={{ user: { name: "Test User" } }}>
         <TaskModal showModal={() => {}} />
       </SessionProvider>
     );
@@ -22,7 +22,7 @@ describe("TaskModal", () => {
 
   it("renders TaskForm", () => {
     render(
-      <SessionProvider session={true}>
+      <SessionProvider session={{ user: { name: "Test User" } }}>
         <TaskModal showModal={() => {}} />
       </SessionProvider>
     );

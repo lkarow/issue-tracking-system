@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 
 import styles from "../styles/TaskModal.module.css";
 
+import { useSession } from "next-auth/react";
+
 type Prop = {
   task?: any;
   newTitle?: string;
@@ -21,6 +23,8 @@ type Task = {
 };
 
 export default function TaskForm({ task, newTitle, newStatus, onClose }: Prop) {
+  const { data: session } = useSession();
+
   const [newTask, setNewTask] = useState<Task>(() => {
     if (task) {
       return {
@@ -37,7 +41,7 @@ export default function TaskForm({ task, newTitle, newStatus, onClose }: Prop) {
         Title: newTitle,
         Description: "",
         Status: newStatus,
-        Author: "",
+        Author: session.user.name || "",
         Assignee: "",
         Date: "",
       };
@@ -46,7 +50,7 @@ export default function TaskForm({ task, newTitle, newStatus, onClose }: Prop) {
       Title: "",
       Description: "",
       Status: "",
-      Author: "",
+      Author: session.user.name || "",
       Assignee: "",
       Date: "",
     };
@@ -191,7 +195,7 @@ export default function TaskForm({ task, newTitle, newStatus, onClose }: Prop) {
               placeholder="Author"
               value={newTask.Author}
               onChange={(e) => handleChange(e)}
-              required
+              disabled
             />
           </div>
         </div>

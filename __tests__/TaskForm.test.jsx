@@ -10,7 +10,7 @@ jest.mock("next/router", () => ({
 describe("TaskForm", () => {
   it("renders inputs and labels for title, description, status, date, assignee and author", async () => {
     render(
-      <SessionProvider session={true}>
+      <SessionProvider session={{ user: { name: "Test User" } }}>
         <TaskForm />
       </SessionProvider>
     );
@@ -56,7 +56,7 @@ describe("TaskForm", () => {
 
   it("renders the data of the tasks", () => {
     render(
-      <SessionProvider session={true}>
+      <SessionProvider session={{ user: { name: "Test User" } }}>
         <TaskForm
           task={{
             _id: "0",
@@ -98,22 +98,22 @@ describe("TaskForm", () => {
     expect(taskAuthor).toBe("Test Author");
   });
 
-  it("renders nothing in inputs if data of the task is empty", () => {
-      render(
-        <SessionProvider session={true}>
-          <TaskForm
-            task={{
-              _id: "0",
-              Title: "",
-              Description: "",
-              Status: "",
-              Author: "",
-              Assignee: "",
-              Date: "",
-            }}
-          />
-        </SessionProvider>
-      );
+  it("doesn't render anything in the inputs execpt the logged in user as author if the task data is empty", () => {
+    render(
+      <SessionProvider session={{ user: { name: "Test User" } }}>
+        <TaskForm
+          task={{
+            _id: "0",
+            Title: "",
+            Description: "",
+            Status: "",
+            Author: "Test User",
+            Assignee: "",
+            Date: "",
+          }}
+        />
+      </SessionProvider>
+    );
 
     const taskTitle = screen.getByLabelText("Title*", {
       selector: "input",
@@ -139,12 +139,35 @@ describe("TaskForm", () => {
     expect(taskStatus).toBe("");
     expect(taskDate).toBe("");
     expect(taskAssignee).toBe("");
-    expect(taskAuthor).toBe("");
+    expect(taskAuthor).toBe("Test User");
+  });
+
+  it("renders the author input as disabled", () => {
+    render(
+      <SessionProvider session={{ user: { name: "Test User" } }}>
+        <TaskForm
+          task={{
+            _id: "0",
+            Title: "",
+            Description: "",
+            Status: "",
+            Author: "Test User",
+            Assignee: "",
+            Date: "",
+          }}
+        />
+      </SessionProvider>
+    );
+    const inputAuthor = screen.getByLabelText("Author*", {
+      selector: "input",
+    });
+
+    expect(inputAuthor).toHaveAttribute("disabled");
   });
 
   it("renders submit button", () => {
     render(
-      <SessionProvider session={true}>
+      <SessionProvider session={{ user: { name: "Test User" } }}>
         <TaskForm />
       </SessionProvider>
     );
@@ -180,7 +203,7 @@ describe("TaskForm", () => {
 
   it("renders cancel button but no delete button when a new task is created", async () => {
     render(
-      <SessionProvider session={true}>
+      <SessionProvider session={{ user: { name: "Test User" } }}>
         <TaskForm task={null} />
       </SessionProvider>
     );
